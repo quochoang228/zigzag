@@ -150,21 +150,93 @@ class _TodayViewState extends State<TodayView> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Recoment for you'.toUpperCase(),
+              'Recoment for you',
               style: BaseTextStyles.bodyText16.semiBold().copyWith(
                     color: BaseColors.white500,
                   ),
             ),
           ),
-          ListView.separated(
-            itemCount: 100,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            separatorBuilder: (context, index) => const Gap(16),
-            itemBuilder: (context, index) {
-              return Container(color: Colors.amber, child: Text('data'));
-            },
-          )
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.3,
+            child: ListView.separated(
+              itemCount: 3,
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (context, index) => const Gap(16),
+              itemBuilder: (context, index) {
+                return SizedBox(
+                  width: MediaQuery.sizeOf(context).width * 0.35,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AspectRatio(
+                        aspectRatio: 0.9,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: BaseColors.blue100,
+                              borderRadius: BorderRadius.circular(
+                                BaseDimens.radius8,
+                              )),
+                        ),
+                      ),
+                      const Gap(8),
+                      Text(
+                        '골골스',
+                        style: BaseTextStyles.bodyText12.bold().copyWith(
+                              color: BaseColors.white500,
+                            ),
+                      ),
+                      Text(
+                        '[컬러추가💛37만장돌파👏🏻구김적은촤르르핏] 핀턱 스트레이트 일자슬랙스◆',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: BaseTextStyles.bodyText12.copyWith(
+                          color: BaseColors.white500,
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '16%',
+                            style: BaseTextStyles.bodyText14.bold().copyWith(
+                                  color: BaseColors.tintPink,
+                                ),
+                          ),
+                          Text(
+                            "119.9€",
+                            style: BaseTextStyles.bodyText14.bold().copyWith(
+                                  color: BaseColors.white500,
+                                ),
+                          ),
+                        ],
+                      ),
+                      const Gap(4),
+                      Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: BaseColors.background3,
+                          borderRadius: BorderRadius.circular(
+                            BaseDimens.radius4,
+                          ),
+                        ),
+                        child: Text(
+                          'Free ship',
+                          style: BaseTextStyles.bodyText10.copyWith(
+                            color: BaseColors.textLabel,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          Container(
+            height: BaseDimens.spacing24,
+          ),
         ],
       ),
     );

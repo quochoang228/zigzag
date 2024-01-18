@@ -14,13 +14,12 @@ class BaseColors {
     return null;
   }
 
-
   static const Color background = Color(0xFF1A1A1A);
-  static const Color line = Color(0xFF1E2021);
   static const Color background2 = Color(0xFF35373A);
+  static const Color background3 = Color(0xFF212324);
+  static const Color line = Color(0xFF1E2021);
   static const Color textLabel = Color(0xFF727678);
-
-
+  static const Color tintPink = Color(0xFFFA6EE2);
 
   static const Color neutral900 = Color(0xFF212121);
   static const Color neutral800 = Color(0xFF424242);
@@ -38,7 +37,6 @@ class BaseColors {
   static const Color black300 = Color(0x66000000);
   static const Color black200 = Color(0x4D000000);
   static const Color black100 = Color(0x1A000000);
-
 
   static const Color white500 = Color(0xFFFFFFFF);
   static const Color white400 = Color(0xB3FFFFFF);
