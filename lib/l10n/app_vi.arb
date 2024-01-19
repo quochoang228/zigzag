@@ -1,5 +1,8 @@
 {
   "appName": "ZigZag",
   "home": "Home",
-  "discovery": "Discovery"
+  "shops": "Shops",
+  "loyalty": "Loyalty",
+  "discovery": "Discovery",
+  "account": "Account"
 }

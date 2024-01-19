@@ -8,6 +8,7 @@ import '../generated/assets.gen.dart';
 import '../theme/base_text_styles.dart';
 import 'discovery/discovery_page.dart';
 import 'home/home_page.dart';
+import 'shop/shop_page.dart';
 
 final rootPageControllerProvider = StateProvider.autoDispose<PageController>(
     (ref) => PageController(initialPage: ref.watch(rootIndexProvider)));
@@ -64,6 +65,9 @@ class _RootPageState extends ConsumerState<RootPage> {
               ref.read(rootIndexProvider.notifier).update((state) => value),
           children: const [
             HomePage(),
+            Shops(),
+            DiscoveryPage(),
+            DiscoveryPage(),
             DiscoveryPage(),
           ],
         ),
@@ -75,9 +79,26 @@ class _RootPageState extends ConsumerState<RootPage> {
               label: context.l10n.home,
             ),
             BottomNavigationBarItem(
-              icon: iconNav(child: MyAssets.icons.navUser.svg()),
-              activeIcon: iconNav(child: MyAssets.icons.navUserActive.svg()),
+              icon: iconNav(child: MyAssets.icons.navShopping.svg()),
+              activeIcon:
+                  iconNav(child: MyAssets.icons.navShoppingActive.svg()),
+              label: context.l10n.shops,
+            ),
+            BottomNavigationBarItem(
+              icon: iconNav(child: MyAssets.icons.navDiscovery.svg()),
+              activeIcon:
+                  iconNav(child: MyAssets.icons.navDiscoveryActive.svg()),
               label: context.l10n.discovery,
+            ),
+            BottomNavigationBarItem(
+              icon: iconNav(child: MyAssets.icons.navLoyalty.svg()),
+              activeIcon: iconNav(child: MyAssets.icons.navLoyaltyActive.svg()),
+              label: context.l10n.loyalty,
+            ),
+            BottomNavigationBarItem(
+              icon: iconNav(child: MyAssets.icons.navAccount.svg()),
+              activeIcon: iconNav(child: MyAssets.icons.navAccount.svg()),
+              label: context.l10n.account,
             ),
           ],
           currentIndex: ref.watch(rootIndexProvider),
@@ -90,14 +111,23 @@ class _RootPageState extends ConsumerState<RootPage> {
                   if (ref.watch(homePageControllerProvider).hasClients) {
                     ref.watch(homePageControllerProvider).animateTo(
                           0.0,
-                          duration: const Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 600),
                           curve: Curves.easeOut,
                         );
                   }
                   break;
                 case 1:
+                  if (ref.watch(shopControllerProvider).hasClients) {
+                    ref.watch(shopControllerProvider).animateTo(
+                          0.0,
+                          duration: const Duration(milliseconds: 600),
+                          curve: Curves.easeOut,
+                        );
+                  }
                   break;
                 case 2:
+                  break;
+                case 3:
                   break;
                 case 3:
                   break;

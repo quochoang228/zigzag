@@ -18,11 +18,49 @@ class $AssetsIconsGen {
   SvgGenImage get arrowRight =>
       const SvgGenImage('assets/icons/arrow-right.svg');
 
+  /// File path: assets/icons/example.png
+  AssetGenImage get example => const AssetGenImage('assets/icons/example.png');
+
+  /// File path: assets/icons/like.svg
+  SvgGenImage get like => const SvgGenImage('assets/icons/like.svg');
+
   /// File path: assets/icons/logo.svg
   SvgGenImage get logo => const SvgGenImage('assets/icons/logo.svg');
 
   /// File path: assets/icons/menu-line.svg
   SvgGenImage get menuLine => const SvgGenImage('assets/icons/menu-line.svg');
+
+  /// File path: assets/icons/nav-account-active.svg
+  SvgGenImage get navAccountActive =>
+      const SvgGenImage('assets/icons/nav-account-active.svg');
+
+  /// File path: assets/icons/nav-account.svg
+  SvgGenImage get navAccount =>
+      const SvgGenImage('assets/icons/nav-account.svg');
+
+  /// File path: assets/icons/nav-loyalty-active.svg
+  SvgGenImage get navLoyaltyActive =>
+      const SvgGenImage('assets/icons/nav-loyalty-active.svg');
+
+  /// File path: assets/icons/nav-loyalty.svg
+  SvgGenImage get navLoyalty =>
+      const SvgGenImage('assets/icons/nav-loyalty.svg');
+
+  /// File path: assets/icons/nav-shopping-active.svg
+  SvgGenImage get navShoppingActive =>
+      const SvgGenImage('assets/icons/nav-shopping-active.svg');
+
+  /// File path: assets/icons/nav-shopping.svg
+  SvgGenImage get navShopping =>
+      const SvgGenImage('assets/icons/nav-shopping.svg');
+
+  /// File path: assets/icons/nav_discovery.svg
+  SvgGenImage get navDiscovery =>
+      const SvgGenImage('assets/icons/nav_discovery.svg');
+
+  /// File path: assets/icons/nav_discovery_active.svg
+  SvgGenImage get navDiscoveryActive =>
+      const SvgGenImage('assets/icons/nav_discovery_active.svg');
 
   /// File path: assets/icons/nav_home.svg
   SvgGenImage get navHome => const SvgGenImage('assets/icons/nav_home.svg');
@@ -30,13 +68,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/nav_home_active.svg
   SvgGenImage get navHomeActive =>
       const SvgGenImage('assets/icons/nav_home_active.svg');
-
-  /// File path: assets/icons/nav_user.svg
-  SvgGenImage get navUser => const SvgGenImage('assets/icons/nav_user.svg');
-
-  /// File path: assets/icons/nav_user_active.svg
-  SvgGenImage get navUserActive =>
-      const SvgGenImage('assets/icons/nav_user_active.svg');
 
   /// File path: assets/icons/search-line.svg
   SvgGenImage get searchLine =>
@@ -47,14 +78,22 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/shopping-bag-line.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [
+  List<dynamic> get values => [
         arrowRight,
+        example,
+        like,
         logo,
         menuLine,
+        navAccountActive,
+        navAccount,
+        navLoyaltyActive,
+        navLoyalty,
+        navShoppingActive,
+        navShopping,
+        navDiscovery,
+        navDiscoveryActive,
         navHome,
         navHomeActive,
-        navUser,
-        navUserActive,
         searchLine,
         shoppingBagLine
       ];

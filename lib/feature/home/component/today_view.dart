@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:zigzag/feature/home/component/banneer.dart';
 import 'package:zigzag/generated/assets.gen.dart';
 import 'package:zigzag/theme/base_dimens.dart';
 import 'package:zigzag/theme/base_text_styles.dart';
@@ -15,9 +16,14 @@ class TodayView extends StatefulWidget {
   State<TodayView> createState() => _TodayViewState();
 }
 
-class _TodayViewState extends State<TodayView> {
+class _TodayViewState extends State<TodayView>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     var menu = [
       'SOHO',
       'Clothes',
@@ -35,6 +41,11 @@ class _TodayViewState extends State<TodayView> {
       'Plus',
       'Bags',
     ];
+    var banner = [
+      'https://images.pexels.com/photos/2899937/pexels-photo-2899937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/2899937/pexels-photo-2899937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/1478477/pexels-photo-1478477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    ];
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,6 +53,60 @@ class _TodayViewState extends State<TodayView> {
           Container(
             height: MediaQuery.sizeOf(context).height * 0.4,
             color: BaseColors.blue300,
+            child: Stack(
+              children: [
+                PageView(
+                  // controller: PageController(viewportFraction: 0.9),
+                  children: [
+                    ...banner.map(
+                      (e) => LocationListItem(
+                          imageUrl: e, name: "name", country: "Hà Nội"),
+                      // (e) => Container(
+                      //   decoration: BoxDecoration(
+                      //     image: DecorationImage(
+                      //       image: NetworkImage(e),
+                      //       fit: BoxFit.cover,
+                      //     ),
+                      //   ),
+                      // ),
+                    ),
+                  ],
+                ),
+                Positioned.fill(
+                  right: 16,
+                  bottom: 16,
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(BaseDimens.radius16),
+                        color: BaseColors.hexColor('151018'),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 12),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            '1',
+                            style: BaseTextStyles.bodyText12.medium().copyWith(
+                                  color: BaseColors.white500,
+                                ),
+                          ),
+                          Text(
+                            '/2',
+                            style: BaseTextStyles.bodyText12.medium().copyWith(
+                                  color: BaseColors.hexColor('B9B7BA'),
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Container(
             padding: const EdgeInsets.all(16),
@@ -92,11 +157,12 @@ class _TodayViewState extends State<TodayView> {
                               BaseDimens.radius18,
                             ),
                           ),
+                          padding: const EdgeInsets.all(2),
                           alignment: Alignment.center,
                           child: Text(
                             menu[index].toUpperCase(),
                             textAlign: TextAlign.center,
-                            style: BaseTextStyles.bodyText10.bold().apply(
+                            style: BaseTextStyles.bodyText11.bold().apply(
                                   color: BaseColors.white500,
                                 ),
                           ),
@@ -149,11 +215,22 @@ class _TodayViewState extends State<TodayView> {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Recoment for you',
-              style: BaseTextStyles.bodyText16.semiBold().copyWith(
-                    color: BaseColors.white500,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Recoment for you',
+                  style: BaseTextStyles.bodyText16.semiBold().copyWith(
+                        color: BaseColors.white500,
+                      ),
+                ),
+                Text(
+                  'sponsored',
+                  style: BaseTextStyles.bodyText10.copyWith(
+                    color: BaseColors.hexColor('424547'),
                   ),
+                ),
+              ],
             ),
           ),
           SizedBox(
@@ -233,6 +310,225 @@ class _TodayViewState extends State<TodayView> {
                 );
               },
             ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: BaseDimens.spacing16,
+              vertical: 4,
+            ),
+            color: BaseColors.background2,
+            child: Row(children: [
+              // MyAssets.icons.example.image(),
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  image: const DecorationImage(
+                    image: NetworkImage(
+                      'https://images.pexels.com/photos/3002552/pexels-photo-3002552.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(BaseDimens.radius8),
+                ),
+              ),
+              const Gap(BaseDimens.spacing6),
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '이 상품을 클릭한',
+                    style: BaseTextStyles.bodyText14.copyWith(
+                      color: BaseColors.tintPink,
+                    ),
+                  ),
+                  Text(
+                    '이 상품을 클릭한 다른 고객이 좋아하는 상품',
+                    style: BaseTextStyles.bodyText14.copyWith(
+                      color: BaseColors.white500,
+                    ),
+                  ),
+                ],
+              )),
+            ]),
+          ),
+          GridView.builder(
+            scrollDirection: Axis.vertical,
+            padding: const EdgeInsets.all(16),
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              // số item 1 hàng
+              mainAxisSpacing: 16,
+              // margin phía dưới
+              crossAxisSpacing: 8,
+              // marigin bên phải
+              childAspectRatio: 0.55,
+              // Tỉ lệ 2 chiều ngang / dọc
+              // mainAxisExtent: 105,
+            ),
+            itemCount: 20,
+            itemBuilder: (context, index) {
+              //IntrinsicHeight
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          // color: BaseColors.background2,
+                          borderRadius: BorderRadius.circular(
+                            BaseDimens.radius18,
+                          ),
+                          image: const DecorationImage(
+                            image: NetworkImage(
+                                'https://images.pexels.com/photos/12513869/pexels-photo-12513869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        alignment: Alignment.bottomCenter,
+                        padding: const EdgeInsets.all(BaseDimens.size8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 2,
+                                horizontal: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                  color: BaseColors.blue500,
+                                  borderRadius: BorderRadius.circular(
+                                      BaseDimens.radius16)),
+                              child: Text(
+                                'FAST SHIP',
+                                style: BaseTextStyles.bodyText8
+                                    .semiBold()
+                                    .copyWith(
+                                      color: BaseColors.white500,
+                                    ),
+                              ),
+                            ),
+                            MyAssets.icons.like.svg(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Gap(BaseDimens.spacing8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'MAENIQUE',
+                            style: BaseTextStyles.bodyText13.bold().copyWith(
+                                  color: BaseColors.white500,
+                                ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'Stan collar short mustag training',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: BaseTextStyles.bodyText12.copyWith(
+                          color: BaseColors.white500,
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Z Discount',
+                            style: BaseTextStyles.bodyText12.bold().copyWith(
+                                  color: BaseColors.tintPink,
+                                ),
+                          ),
+                          const Gap(BaseDimens.spacing8),
+                          // Text(
+                          //   "119.000",
+                          //   style: BaseTextStyles.bodyText12.copyWith(
+                          //     color: BaseColors.white500,
+                          //     decoration: TextDecoration.underline,
+                          //   ),
+                          // ),
+                          Text(
+                            '119.000',
+                            style: BaseTextStyles.bodyText12.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              color: BaseColors.white500,
+                              decorationColor: BaseColors.white500, // optional
+                              // decorationThickness: 2, // optional
+                              // decorationStyle:
+                              //     TextDecorationStyle.solid, // optional
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '16%',
+                            style: BaseTextStyles.bodyText16.bold().copyWith(
+                                  color: BaseColors.tintPink,
+                                ),
+                          ),
+                          Text(
+                            "119.9€",
+                            style: BaseTextStyles.bodyText16.bold().copyWith(
+                                  color: BaseColors.white500,
+                                ),
+                          ),
+                        ],
+                      ),
+                      const Gap(4),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: BaseColors.hexColor('C0CBC7'),
+                              borderRadius: BorderRadius.circular(
+                                BaseDimens.radius4,
+                              ),
+                            ),
+                            child: Text(
+                              'Originals',
+                              style: BaseTextStyles.bodyText10.copyWith(
+                                color: BaseColors.hexColor('262A2D'),
+                              ),
+                            ),
+                          ),
+                          const Gap(BaseDimens.spacing8),
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: BaseColors.hexColor('262A2D'),
+                              borderRadius: BorderRadius.circular(
+                                BaseDimens.radius4,
+                              ),
+                            ),
+                            child: Text(
+                              'Free order',
+                              style: BaseTextStyles.bodyText10.copyWith(
+                                color: BaseColors.hexColor('808485'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
           ),
           Container(
             height: BaseDimens.spacing24,

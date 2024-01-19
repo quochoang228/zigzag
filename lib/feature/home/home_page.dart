@@ -3,8 +3,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:zigzag/feature/home/component/today_view.dart';
 import 'package:zigzag/theme/base_color.dart';
-import 'dart:math' as math;
 
+
+import '../../components/sliver_app_bar_delegate.dart';
 import '../../generated/assets.gen.dart';
 
 enum TabEnum {
@@ -96,7 +97,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
               SliverPersistentHeader(
                 pinned: true,
-                delegate: _SliverAppBarDelegate(
+                delegate: SliverAppBarDelegate(
                   minHeight: 60.0,
                   maxHeight: 60.0,
                   child: Container(
@@ -171,32 +172,5 @@ class _HomePageState extends ConsumerState<HomePage> {
         ),
       ),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-  @override
-  double get minExtent => minHeight;
-  @override
-  double get maxExtent => math.max(maxHeight, minHeight);
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand(child: child);
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
   }
 }

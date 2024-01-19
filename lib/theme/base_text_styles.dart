@@ -18,6 +18,12 @@ abstract class BaseTextStyles {
   );
 
   /// ----- font SF Pro Text ------///
+  static TextStyle bodyText8 = _baseTextStyle.copyWith(
+    fontSize: 8,
+    fontWeight: BaseFontWeight.regular,
+    // height: 1.1,
+  );
+
   static TextStyle bodyText10 = _baseTextStyle.copyWith(
     fontSize: 10,
     fontWeight: BaseFontWeight.regular,
