@@ -18,6 +18,18 @@ class $AssetsIconsGen {
   SvgGenImage get arrowRight =>
       const SvgGenImage('assets/icons/arrow-right.svg');
 
+  /// File path: assets/icons/banner01.png
+  AssetGenImage get banner01 =>
+      const AssetGenImage('assets/icons/banner01.png');
+
+  /// File path: assets/icons/banner02.png
+  AssetGenImage get banner02 =>
+      const AssetGenImage('assets/icons/banner02.png');
+
+  /// File path: assets/icons/banner03.png
+  AssetGenImage get banner03 =>
+      const AssetGenImage('assets/icons/banner03.png');
+
   /// File path: assets/icons/example.png
   AssetGenImage get example => const AssetGenImage('assets/icons/example.png');
 
@@ -80,6 +92,9 @@ class $AssetsIconsGen {
   /// List of all assets
   List<dynamic> get values => [
         arrowRight,
+        banner01,
+        banner02,
+        banner03,
         example,
         like,
         logo,

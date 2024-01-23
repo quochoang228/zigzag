@@ -7,6 +7,7 @@ import 'package:zigzag/generated/assets.gen.dart';
 import 'package:zigzag/theme/base_dimens.dart';
 import 'package:zigzag/theme/base_text_styles.dart';
 
+import '../../../components/loop_page_view/scroll_loop_auto_scroll.dart';
 import '../../../theme/base_color.dart';
 
 class TodayView extends StatefulWidget {
@@ -113,9 +114,19 @@ class _TodayViewState extends State<TodayView>
             color: BaseColors.white500,
             child: Row(children: [
               Expanded(
-                child: Text(
-                  'Discount up to 94% on the occasion of Lunar New Year',
-                  style: BaseTextStyles.bodyText13.semiBold(),
+                // child: Text(
+                //   'Discount up to 94% on the occasion of Lunar New Year',
+                //   style: BaseTextStyles.bodyText13.semiBold(),
+                // ),
+                child: ScrollLoopAutoScroll(
+                  scrollDirection: Axis.horizontal,
+                  reverseScroll: false,
+                  enableScrollInput: false,
+                  duration: const Duration(minutes: 3),
+                  child: Text(
+                    'Discount up to 94% on the occasion of Lunar New Year',
+                    style: BaseTextStyles.bodyText13.semiBold(),
+                  ),
                 ),
               ),
               const Gap(16),
