@@ -187,9 +187,7 @@ class BottomNavBar extends StatelessWidget {
           unselectedLabelStyle:
               BaseTextStyles.nav.bold().copyWith(fontSize: 10),
 
-          enableFeedback: true,
-          // elevation: 20,
-
+          // enableFeedback: true,
           elevation: 10,
           type: BottomNavigationBarType.fixed,
           items: items,

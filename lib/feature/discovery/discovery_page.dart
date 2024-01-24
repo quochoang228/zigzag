@@ -14,37 +14,56 @@ class _DiscoveryPageState extends State<DiscoveryPage> {
     return Scaffold(
       backgroundColor: BaseColors.background,
       body: SafeArea(
-        child: ListView.builder(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          itemBuilder: (BuildContext context, int index) {
-            if (index % 2 == 0) {
-              return _buildCarousel(context, index ~/ 2);
-            } else {
-              return const Divider();
-            }
-          },
+        child: Column(
+          children: [
+            _buildCarousel(context, 1),
+          ],
         ),
+        // child: ListView.builder(
+        //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+        //   itemBuilder: (BuildContext context, int index) {
+        //     if (index % 2 == 0) {
+        //       return _buildCarousel(context, index ~/ 2);
+        //     } else {
+        //       return const Divider();
+        //     }
+        //   },
+        // ),
       ),
     );
   }
 
   Widget _buildCarousel(BuildContext context, int carouselIndex) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Text('Carousel $carouselIndex'),
-        SizedBox(
-          // you may want to use an aspect ratio here for tablet support
-          height: 200.0,
-          child: PageView.builder(
-            // store this controller in a State to save the carousel scroll position
-            controller: PageController(viewportFraction: 0.8),
-            itemBuilder: (BuildContext context, int itemIndex) {
-              return _buildCarouselItem(context, carouselIndex, itemIndex);
-            },
-          ),
-        )
-      ],
+    return SizedBox(
+      height: 200.0,
+      // child: ListView.separated(
+      //   controller: ScrollController(initialScrollOffset: 100),
+      //   physics: const PageScrollPhysics(),
+      //   scrollDirection: Axis.horizontal,
+      //   padding: const EdgeInsets.symmetric(horizontal: 16),
+      //   itemBuilder: (context, index) {
+      //     return Container(
+      //       color: Colors.amber,
+      //       width: MediaQuery.sizeOf(context).width * 0.9,
+      //       child: Text('$index'),
+      //       // margin: const EdgeInsets.only(right: 16),
+      //     );
+      //   },
+      //   separatorBuilder: (context, index) => const Gap(16),
+      //   itemCount: 10,
+      // ),
+      child: PageView.builder(
+        controller: PageController(viewportFraction: 0.8),
+        itemCount: 5,
+        itemBuilder: (BuildContext context, int itemIndex) {
+          return Container(
+            color: Colors.amber,
+            margin: const EdgeInsets.only(right: 16),
+            child: Text('$itemIndex'),
+          );
+          // return _buildCarouselItem(context, carouselIndex, itemIndex);
+        },
+      ),
     );
   }
 

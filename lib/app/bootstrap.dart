@@ -65,13 +65,13 @@ Future<void> setPreferredOrientations() {
 void setSystemUI() {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
+      statusBarColor: BaseColors.background,
 
       // background status bar
       systemNavigationBarColor: BaseColors.background,
 
       // background Navigation
-      statusBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.light,
 
       statusBarBrightness: Brightness.light,
 

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gap/gap.dart';
 import 'package:zigzag/feature/home/component/banneer.dart';
 import 'package:zigzag/generated/assets.gen.dart';
@@ -43,6 +44,12 @@ class _TodayViewState extends State<TodayView>
       'Bags',
     ];
     var banner = [
+      'https://images.pexels.com/photos/2899937/pexels-photo-2899937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/2899937/pexels-photo-2899937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/1478477/pexels-photo-1478477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/2899937/pexels-photo-2899937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/2899937/pexels-photo-2899937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      'https://images.pexels.com/photos/1478477/pexels-photo-1478477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       'https://images.pexels.com/photos/2899937/pexels-photo-2899937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       'https://images.pexels.com/photos/2899937/pexels-photo-2899937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       'https://images.pexels.com/photos/1478477/pexels-photo-1478477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -230,14 +237,14 @@ class _TodayViewState extends State<TodayView>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Recoment for you',
+                  'Items recommended for you',
                   style: BaseTextStyles.bodyText16.semiBold().copyWith(
                         color: BaseColors.white500,
                       ),
                 ),
                 Text(
                   'sponsored',
-                  style: BaseTextStyles.bodyText10.copyWith(
+                  style: BaseTextStyles.bodyText11.copyWith(
                     color: BaseColors.hexColor('424547'),
                   ),
                 ),
@@ -380,7 +387,7 @@ class _TodayViewState extends State<TodayView>
               // Tỉ lệ 2 chiều ngang / dọc
               // mainAxisExtent: 105,
             ),
-            itemCount: 20,
+            itemCount: 10,
             itemBuilder: (context, index) {
               //IntrinsicHeight
               return Column(
@@ -541,6 +548,251 @@ class _TodayViewState extends State<TodayView>
               );
             },
           ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              '주목해야 할 라이징 스토어',
+              style: BaseTextStyles.bodyText16.semiBold().copyWith(
+                    color: BaseColors.white500,
+                  ),
+            ),
+          ),
+          Container(
+            height: 400,
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(BaseDimens.radius16),
+              child: GridView.custom(
+                gridDelegate: SliverQuiltedGridDelegate(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 2,
+                  crossAxisSpacing: 2,
+                  repeatPattern: QuiltedGridRepeatPattern.inverted,
+                  pattern: [
+                    QuiltedGridTile(2, 2),
+                    QuiltedGridTile(1, 1),
+                    QuiltedGridTile(1, 1),
+                  ],
+                ),
+                scrollDirection: Axis.horizontal,
+                // padding: const EdgeInsets.symmetric(horizontal: 16),
+                semanticChildCount: 15,
+                childrenDelegate: SliverChildBuilderDelegate(
+                  (context, index) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(banner[index % banner.length]),
+                        fit: BoxFit.cover,
+                      ),
+                      // borderRadius: (index == 0)
+                      //     ? const BorderRadius.only(
+                      //         topLeft: Radius.circular(BaseDimens.radius16))
+                      //     : index == 1
+                      //         ? const BorderRadius.only(
+                      //             bottomLeft:
+                      //                 Radius.circular(BaseDimens.radius16))
+                      //         : index == (banner.length - 1)
+                      //             ? const BorderRadius.only(
+                      //                 bottomRight:
+                      //                     Radius.circular(BaseDimens.radius16))
+                      //             : index == (banner.length - 3)
+                      //                 ? const BorderRadius.only(
+                      //                     topRight: Radius.circular(
+                      //                         BaseDimens.radius16))
+                      //                 : const BorderRadius.all(Radius.zero),
+                    ),
+                    alignment: Alignment.bottomCenter,
+                    padding: const EdgeInsets.all(12),
+                    child: Text(
+                      '주목해야 할',
+                      style: BaseTextStyles.bodyText12.semiBold().copyWith(
+                            color: BaseColors.white500,
+                          ),
+                    ),
+                  ),
+                  childCount: banner.length,
+                ),
+              ),
+            ),
+          ),
+          GridView.builder(
+            scrollDirection: Axis.vertical,
+            padding: const EdgeInsets.all(16),
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              // số item 1 hàng
+              mainAxisSpacing: 16,
+              // margin phía dưới
+              crossAxisSpacing: 8,
+              // marigin bên phải
+              childAspectRatio: 0.55,
+              // Tỉ lệ 2 chiều ngang / dọc
+              // mainAxisExtent: 105,
+            ),
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              //IntrinsicHeight
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          // color: BaseColors.background2,
+                          borderRadius: BorderRadius.circular(
+                            BaseDimens.radius18,
+                          ),
+                          image: const DecorationImage(
+                            image: NetworkImage(
+                                'https://images.pexels.com/photos/12513869/pexels-photo-12513869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        alignment: Alignment.bottomCenter,
+                        padding: const EdgeInsets.all(BaseDimens.size8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 2,
+                                horizontal: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                  color: BaseColors.blue500,
+                                  borderRadius: BorderRadius.circular(
+                                      BaseDimens.radius16)),
+                              child: Text(
+                                'FAST SHIP',
+                                style: BaseTextStyles.bodyText8
+                                    .semiBold()
+                                    .copyWith(
+                                      color: BaseColors.white500,
+                                    ),
+                              ),
+                            ),
+                            MyAssets.icons.like.svg(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Gap(BaseDimens.spacing8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'MAENIQUE',
+                            style: BaseTextStyles.bodyText13.bold().copyWith(
+                                  color: BaseColors.white500,
+                                ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'Stan collar short mustag training',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: BaseTextStyles.bodyText12.copyWith(
+                          color: BaseColors.white500,
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Z Discount',
+                            style: BaseTextStyles.bodyText12.bold().copyWith(
+                                  color: BaseColors.tintPink,
+                                ),
+                          ),
+                          const Gap(BaseDimens.spacing8),
+                          // Text(
+                          //   "119.000",
+                          //   style: BaseTextStyles.bodyText12.copyWith(
+                          //     color: BaseColors.white500,
+                          //     decoration: TextDecoration.underline,
+                          //   ),
+                          // ),
+                          Text(
+                            '119.000',
+                            style: BaseTextStyles.bodyText12.copyWith(
+                              decoration: TextDecoration.lineThrough,
+                              color: BaseColors.white500,
+                              decorationColor: BaseColors.white500, // optional
+                              // decorationThickness: 2, // optional
+                              // decorationStyle:
+                              //     TextDecorationStyle.solid, // optional
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '16%',
+                            style: BaseTextStyles.bodyText16.bold().copyWith(
+                                  color: BaseColors.tintPink,
+                                ),
+                          ),
+                          Text(
+                            "119.9€",
+                            style: BaseTextStyles.bodyText16.bold().copyWith(
+                                  color: BaseColors.white500,
+                                ),
+                          ),
+                        ],
+                      ),
+                      const Gap(4),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: BaseColors.hexColor('C0CBC7'),
+                              borderRadius: BorderRadius.circular(
+                                BaseDimens.radius4,
+                              ),
+                            ),
+                            child: Text(
+                              'Originals',
+                              style: BaseTextStyles.bodyText10.copyWith(
+                                color: BaseColors.hexColor('262A2D'),
+                              ),
+                            ),
+                          ),
+                          const Gap(BaseDimens.spacing8),
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: BaseColors.hexColor('262A2D'),
+                              borderRadius: BorderRadius.circular(
+                                BaseDimens.radius4,
+                              ),
+                            ),
+                            child: Text(
+                              'Free order',
+                              style: BaseTextStyles.bodyText10.copyWith(
+                                color: BaseColors.hexColor('808485'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            },
+          ),
+
           Container(
             height: BaseDimens.spacing24,
           ),
