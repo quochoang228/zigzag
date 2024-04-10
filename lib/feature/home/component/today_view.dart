@@ -121,20 +121,20 @@ class _TodayViewState extends State<TodayView>
             color: BaseColors.white500,
             child: Row(children: [
               Expanded(
-                // child: Text(
-                //   'Discount up to 94% on the occasion of Lunar New Year',
-                //   style: BaseTextStyles.bodyText13.semiBold(),
-                // ),
-                child: ScrollLoopAutoScroll(
-                  scrollDirection: Axis.horizontal,
-                  reverseScroll: false,
-                  enableScrollInput: false,
-                  duration: const Duration(minutes: 3),
-                  child: Text(
-                    'Discount up to 94% on the occasion of Lunar New Year',
-                    style: BaseTextStyles.bodyText13.semiBold(),
-                  ),
+                child: Text(
+                  'Discount up to 94% on the occasion of Lunar New Year',
+                  style: BaseTextStyles.bodyText13.semiBold(),
                 ),
+                // child: ScrollLoopAutoScroll(
+                //   scrollDirection: Axis.horizontal,
+                //   reverseScroll: false,
+                //   enableScrollInput: false,
+                //   duration: const Duration(minutes: 3),
+                //   child: Text(
+                //     'Discount up to 94% on the occasion of Lunar New Year',
+                //     style: BaseTextStyles.bodyText13.semiBold(),
+                //   ),
+                // ),
               ),
               const Gap(16),
               MyAssets.icons.arrowRight.svg(width: 16, height: 16),

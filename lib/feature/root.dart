@@ -129,7 +129,7 @@ class _RootPageState extends ConsumerState<RootPage> {
                   break;
                 case 3:
                   break;
-                case 3:
+                case 4:
                   break;
               }
             }
@@ -161,38 +161,44 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(BaseDimens.radius16),
-          topLeft: Radius.circular(BaseDimens.radius16),
-        ),
-        border: Border(
-          top: BorderSide(
-            color: BaseColors.background2,
+    return Theme(
+      data: ThemeData(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(BaseDimens.radius16),
+            topLeft: Radius.circular(BaseDimens.radius16),
+          ),
+          border: Border(
+            top: BorderSide(
+              color: BaseColors.background2,
+            ),
           ),
         ),
-      ),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(BaseDimens.radius16),
-          topRight: Radius.circular(BaseDimens.radius16),
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: BaseColors.background,
-          selectedItemColor: BaseColors.hexColor('F5F6F8'),
-          selectedLabelStyle: BaseTextStyles.nav.bold().copyWith(fontSize: 10),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(BaseDimens.radius16),
+            topRight: Radius.circular(BaseDimens.radius16),
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: BaseColors.background,
+            selectedItemColor: BaseColors.hexColor('F5F6F8'),
+            selectedLabelStyle: BaseTextStyles.nav.bold().copyWith(fontSize: 10),
 
-          unselectedItemColor: BaseColors.hexColor('585C5D'),
-          unselectedLabelStyle:
-              BaseTextStyles.nav.bold().copyWith(fontSize: 10),
+            unselectedItemColor: BaseColors.hexColor('585C5D'),
+            unselectedLabelStyle:
+                BaseTextStyles.nav.bold().copyWith(fontSize: 10),
 
-          // enableFeedback: true,
-          elevation: 10,
-          type: BottomNavigationBarType.fixed,
-          items: items,
-          currentIndex: currentIndex,
-          onTap: onTap,
+            // enableFeedback: true,
+            elevation: 10,
+            type: BottomNavigationBarType.fixed,
+            items: items,
+            currentIndex: currentIndex,
+            onTap: onTap,
+          ),
         ),
       ),
     );
